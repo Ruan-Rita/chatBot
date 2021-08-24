@@ -1,0 +1,23 @@
+{
+  "name": "chat_bot",
+  "version": "1.0.0",
+  "description": "project for university, learn about IA and aplicated in platform web with JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "chat_bot"
+  ],
+  "author": "Ruan Rita",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "express": "^4.17.1",
+    "twilio": "^3.67.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
