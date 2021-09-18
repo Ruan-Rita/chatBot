@@ -1,0 +1,19 @@
+{
+    "initial":{
+        "msg": "Olá, aqui é o ChatPichaal",
+        "options":{
+            "1":"Conhecer nossos produtos",
+            "2":"Tirar dúvidas dos nossos hardwares",
+            "3":"Solicitação de reembolso, cancelamento, status do pedido",
+            "4":"Sobre",
+            "5":"Finalizar Atendimento"
+        }
+    },
+    "1":{
+        "msg":"msg",
+        "options":{
+            "1":"sadas",
+            "2":"measd"
+        }
+    }
+}
