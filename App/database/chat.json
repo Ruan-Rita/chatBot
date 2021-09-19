@@ -1,19 +1,51 @@
 {
     "initial":{
-        "msg": "Olá, aqui é o ChatPichaal",
-        "options":{
-            "1":"Conhecer nossos produtos",
-            "2":"Tirar dúvidas dos nossos hardwares",
-            "3":"Solicitação de reembolso, cancelamento, status do pedido",
-            "4":"Sobre",
-            "5":"Finalizar Atendimento"
-        }
+        "msg": "Olá, eu sou ChatBot da Pichau",
+        "options":[
+            {"chave": "1", "msg":"1 - Conhecer nossos produtos"},
+            {"chave": "2", "msg":"2 - Tirar dúvidas dos nossos hardwares"},
+            {"chave": "3", "msg":"3 - Solicitação de reembolso, cancelamento, status do pedido"},
+            {"chave": "4", "msg":"4 - Sobre"},
+            {"chave": "5", "msg":"5 - Finalizar Atendimento"}
+        ]
     },
     "1":{
         "msg":"msg",
-        "options":{
-            "1":"sadas",
-            "2":"measd"
-        }
+        "options":[
+            {"chave": "6", "msg":"1 - Conhecer nossos produtos"},
+            {"chave": "7", "msg":"2 - Tirar dúvidas dos nossos hardwares"}
+        ]
+    }
+    ,
+    "2":{
+        "msg":"msg",
+        "options":[
+            {"chave": "8", "msg":"1 - Conhecer nossos produtos"},
+            {"chave": "9", "msg":"2 - Tirar dúvidas dos nossos hardwares"}
+        ]
+    }
+    ,
+    "3":{
+        "msg":"msg",
+        "options":[
+            {"chave": "10", "msg":"1 - Conhecer nossos produtos"},
+            {"chave": "11", "msg":"2 - Tirar dúvidas dos nossos hardwares"}
+        ]
+    }
+    ,
+    "4":{
+        "msg":"msg",
+        "options":[
+            {"chave": "12", "msg":"1 - Conhecer nossos produtos"},
+            {"chave": "13", "msg":"2 - Tirar dúvidas dos nossos hardwares"}
+        ]
+    }
+    ,
+    "5":{
+        "msg":"msg",
+        "options":[
+            {"chave": "14", "msg":"1 - Conhecer nossos produtos"},
+            {"chave": "15", "msg":"2 - Tirar dúvidas dos nossos hardwares"}
+        ]
     }
 }
