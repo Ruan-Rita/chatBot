@@ -1,51 +1,68 @@
-{
-    "initial":{
-        "msg": "Olá, eu sou ChatBot da Pichau",
-        "options":[
-            {"chave": "1", "msg":"1 - Conhecer nossos produtos"},
-            {"chave": "2", "msg":"2 - Tirar dúvidas dos nossos hardwares"},
-            {"chave": "3", "msg":"3 - Solicitação de reembolso, cancelamento, status do pedido"},
-            {"chave": "4", "msg":"4 - Sobre"},
-            {"chave": "5", "msg":"5 - Finalizar Atendimento"}
-        ]
-    },
-    "1":{
-        "msg":"msg",
-        "options":[
-            {"chave": "6", "msg":"1 - Conhecer nossos produtos"},
-            {"chave": "7", "msg":"2 - Tirar dúvidas dos nossos hardwares"}
-        ]
-    }
-    ,
-    "2":{
-        "msg":"msg",
-        "options":[
-            {"chave": "8", "msg":"1 - Conhecer nossos produtos"},
-            {"chave": "9", "msg":"2 - Tirar dúvidas dos nossos hardwares"}
-        ]
-    }
-    ,
-    "3":{
-        "msg":"msg",
-        "options":[
-            {"chave": "10", "msg":"1 - Conhecer nossos produtos"},
-            {"chave": "11", "msg":"2 - Tirar dúvidas dos nossos hardwares"}
-        ]
-    }
-    ,
-    "4":{
-        "msg":"msg",
-        "options":[
-            {"chave": "12", "msg":"1 - Conhecer nossos produtos"},
-            {"chave": "13", "msg":"2 - Tirar dúvidas dos nossos hardwares"}
-        ]
-    }
-    ,
-    "5":{
-        "msg":"msg",
-        "options":[
-            {"chave": "14", "msg":"1 - Conhecer nossos produtos"},
-            {"chave": "15", "msg":"2 - Tirar dúvidas dos nossos hardwares"}
-        ]
-    }
+{ 
+    "chatting": [
+        {   
+            "chat_id": "initial",
+            "body":{
+                "msg": "Olá, eu sou ChatBot da Pichau",
+                "options":[
+                    {"chave": "1", "msg":"1 - Conhecer nossos produtos"},
+                    {"chave": "2", "msg":"2 - Tirar dúvidas dos nossos hardwares"},
+                    {"chave": "3", "msg":"3 - Solicitação de reembolso, cancelamento, status do pedido"},
+                    {"chave": "4", "msg":"4 - Sobre"},
+                    {"chave": "5", "msg":"5 - Finalizar Atendimento"}
+                ]
+            }
+        },
+        {
+            
+            "chat_id": "1",
+            "body":{
+                "msg":"Nossos produtos:",
+                "options":[
+                    {"chave": "6", "msg":"6 - memoria ram"},
+                    {"chave": "7", "msg":"7 - mouse"}
+                ]
+            }
+        },
+        {
+            "chat_id": "2",
+            "body":{
+                "msg":"Dúvidas:",
+                "options":[
+                    {"chave": "4", "msg":"4 - Quem somos nos?"},
+                    {"chave": "9", "msg":"9 - o que fazemos ?"}
+                ]
+            }
+        },
+        {
+            "chat_id": "3",
+            "body":{
+                "msg":"Digite um opção",
+                "options":[
+                    {"chave": "10", "msg":"10 - solicitar reembolso"},
+                    {"chave": "11", "msg":"11 - socicitar cancelamento"}
+                ]
+            }
+        },
+        {
+            "chat_id": "4",
+            "body":{
+                "msg":"Quem somos?",
+                "options":[
+                    {"chave": "12", "msg":"Nós somos a empresa de hardware, vendemos todos os tipode equipamentos eletronicos de computadores, desde mouse até servidores!"}
+                ]
+            }
+        },
+        {
+            "chat_id": "5",
+            "body":{
+                "msg":"A Pichau agradece a sua visita!",
+                "options":[
+                    {"chave": "14", "msg":"Qualquer dúvida conte comigo! "}
+                   
+                ]
+            }
+        }
+    ]
+    
 }
