@@ -3,13 +3,13 @@
         {   
             "chat_id": "initial",
             "body":{
-                "msg": "Olá, eu sou ChatBot da Pichau",
+                "msg": "Olá, eu sou ChatBot da Pichau. Digite uma das opções:",
                 "options":[
-                    {"chave": "1", "msg":"1 - Conhecer nossos produtos"},
-                    {"chave": "2", "msg":"2 - Tirar dúvidas dos nossos hardwares"},
-                    {"chave": "3", "msg":"3 - Solicitação de reembolso, cancelamento, status do pedido"},
-                    {"chave": "4", "msg":"4 - Sobre"},
-                    {"chave": "5", "msg":"5 - Finalizar Atendimento"}
+                    {"chave": "1", "opt":"1" ,"msg":"1 - Conhecer nossos produtos"},
+                    {"chave": "2", "opt":"2" ,"msg":"2 - Tirar dúvidas dos nossos hardwares"},
+                    {"chave": "3", "opt":"3" ,"msg":"3 - Solicitação de reembolso, cancelamento, status do pedido"},
+                    {"chave": "4", "opt":"4" ,"msg":"4 - Sobre"},
+                    {"chave": "5", "opt":"5" ,"msg":"5 - Finalizar Atendimento"}
                 ]
             }
         },
@@ -17,30 +17,30 @@
             
             "chat_id": "1",
             "body":{
-                "msg":"Nossos produtos:",
+                "msg":"Nossos produtos, Digite uma das opções para saber mais:",
                 "options":[
-                    {"chave": "6", "msg":"6 - memoria ram"},
-                    {"chave": "7", "msg":"7 - mouse"}
+                    {"chave": "6", "opt":"1" ,"msg":"1 - Memória Ram", "img" : "https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/l/n/lnm100-256rbna2.jpg" },
+                    {"chave": "7", "opt":"2" ,"msg":"2 - Mouse", "img" : "https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/h/v/hv-ms1023.jpg"}
                 ]
             }
         },
         {
             "chat_id": "2",
             "body":{
-                "msg":"Dúvidas:",
+                "msg":"Dúvidas, Digite uma das opções:",
                 "options":[
-                    {"chave": "4", "msg":"4 - Quem somos nos?"},
-                    {"chave": "9", "msg":"9 - o que fazemos ?"}
+                    {"chave": "4","opt":"1" ,"msg":"1 - Quem somos nos?"},
+                    {"chave": "8","opt":"2" ,"msg":"2 - o que fazemos ?"}
                 ]
             }
         },
         {
             "chat_id": "3",
             "body":{
-                "msg":"Digite um opção",
+                "msg":"Digite uma das opções:",
                 "options":[
-                    {"chave": "10", "msg":"10 - solicitar reembolso"},
-                    {"chave": "11", "msg":"11 - socicitar cancelamento"}
+                    {"chave": "9", "opt":"1" ,"msg":"1 - solicitar reembolso"},
+                    {"chave": "10", "opt":"2" ,"msg":"2 - socicitar cancelamento"}
                 ]
             }
         },
@@ -49,7 +49,7 @@
             "body":{
                 "msg":"Quem somos?",
                 "options":[
-                    {"chave": "12", "msg":"Nós somos a empresa de hardware, vendemos todos os tipode equipamentos eletronicos de computadores, desde mouse até servidores!"}
+                    {"chave": "5", "opt": 1,"msg":"Fundada no ano de 2007, a Pichau Informática é uma empresa que trabalha com os mais variados produtos, atuando principalmente no setor de informática e equipamentos eletrônicos em geral, área bastante competitiva e em constante crescimento, onde qualidade, variedade, garantia e eficiência são critérios importantíssimos para total satisfação, confiança e preferência de nossos consumidores."}
                 ]
             }
         },
@@ -58,8 +58,69 @@
             "body":{
                 "msg":"A Pichau agradece a sua visita!",
                 "options":[
-                    {"chave": "14", "msg":"Qualquer dúvida conte comigo! "}
-                   
+                    {"chave": "initial", "opt":"initial", "msg":"Qualquer dúvida conte comigo! "}
+                ]
+            }
+        },
+        {
+            "chat_id": "6",
+            "body":{
+                "msg":"Memoria Ram!",
+                "options":[
+                    {"chave": "5", "opt": "all", "msg":"4 GByte . Disponível em: https://www.pichau.com.br/ssd-lexar-nm100-256gb-m-2-2280-sata-6gb-s-lnm100-256rbna "},
+                    {"chave": "5", "opt": "all", "msg":"8 GByte . Disponível em: https://www.pichau.com.br/ssd-lexar-nm100-256gb-m-2-2280-sata-6gb-s-lnm100-256rbna"},
+                    {"chave": "5", "opt": "all", "msg":"12 GByte. Disponível em: https://www.pichau.com.br/ssd-lexar-nm100-256gb-m-2-2280-sata-6gb-s-lnm100-256rbna "},
+                    {"chave": "5", "opt": "all", "msg":"16 GByte. Disponível em: https://www.pichau.com.br/ssd-lexar-nm100-256gb-m-2-2280-sata-6gb-s-lnm100-256rbna "}
+                ]
+            }
+        }
+        ,
+        {
+            "chat_id": "7",
+            "body":{
+                "msg":"Mouse",
+                "options":[
+                    {"chave": "5", "opt": "all", "msg":"Qualquer dúvida conte comigo! Disponível em: https://www.pichau.com.br/mouse-gamer-havit-rgb-6400dpi-hv-ms1023 "}
+                ]
+            }
+        }
+        ,
+        {
+            "chat_id": "8",
+            "body":{
+                "msg":"O que fazemos?",
+                "options":[
+                    {"chave": "5", "opt": "all", "msg":"Procuramos acima de tudo oferecer o que há de melhor, os melhores fornecedores, os mais atualizados produtos, o mais atencioso dos atendimentos, juntamente com os preços mais competitivos e atraentes do mercado para que nosso público encontre não apenas variedade e qualidade, mas também uma empresa que se preocupa com a felicidade e total satisfação de seus clientes e por que não, amigos! "}
+                ]
+            }
+        }
+        ,
+        {
+            "chat_id": "9",
+            "body":{
+                "msg":"Setor de cancelamento, digite o numero do seu pedido ou seu cpf",
+                "options":[
+                    {"chave": "11", "opt": "all", "msg":" "}
+                ]
+            }
+        }
+        ,
+        {
+            "chat_id": "10",
+            "body":{
+                "msg":"Solicitação de reembolso, digite o numero do seu pedido ou seu cpf",
+                "options":[
+                    {"chave": "11", "opt": "all", "msg":"Procuramos acima de tudo oferecer o que há de melhor, os melhores fornecedores, os mais atualizados produtos, o mais atencioso dos atendimentos, juntamente com os preços mais competitivos e atraentes do mercado para que nosso público encontre não apenas variedade e qualidade, mas também uma empresa que se preocupa com a felicidade e total satisfação de seus clientes e por que não, amigos! "}
+                ]
+            }
+        }
+        ,
+        {
+            "chat_id": "11",
+            "body":{
+                "msg":"Usuario/Pedido não encontrado",
+                "options":[
+                    {"chave": "5", "opt": "all", "msg":"Recomendamos ligar para um dos nos atendentes. Segunda a Sexta 8h ás 12h e das 13h ás 18h no telefone: (47) 3305-5150,  ou encaminhar para esse email a solicitação: sac@pichau.com.br "}
                 ]
             }
         }

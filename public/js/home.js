@@ -36,7 +36,7 @@ const postApi = async (message) => {
         console.log(`Resposta do servidor ${xhr.response}`)
         var respose = JSON.parse(xhr.response)
         Array.from(respose).forEach(item =>{
-            showMessage(item, "other")
+            showMessage(item.msg, "other")
         })
     }) 
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
