@@ -17,7 +17,21 @@ routes.post('/whatsapp', async function(req, res){
     const senderID = req.body.From
     
     var instancia = new Twilio();
-    instancia.sendMessage("Você está conversando com chatbot do Ruan!", senderID)
+    const chatBot = new ChatController();
+    const chats = chatBot.chat(message)
+    instancia.sendMessage("teste", senderID, false)
+    console.log("/////////////////********************************************************")
+    console.log("/////////////////********************************************************")
+    console.log("/////////////////********************************************************")
+    console.log("/////////////////********************************************************")
+    // console.log(chats)
+
+    Array.from(chats).forEach(conversa =>  {
+        console.log("Conversa --------------------------------------------")
+        console.log(conversa)
+
+        instancia.sendMessage(conversa.msg, senderID, false)
+    })
 });
 
 routes.post('/ambiente', async function(req, res){
@@ -25,6 +39,7 @@ routes.post('/ambiente', async function(req, res){
     console.log(req.body)
 
     const chatC = new ChatController();
+    
     res.json(chatC.chat(req.body.msg))
 });
 
