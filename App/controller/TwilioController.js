@@ -11,7 +11,7 @@ class Twillio {
     console.log("instancei o twilio -> com os dados da conta")
   }
 
-  async sendMessage(message, senderID, isMedia = false){
+  async sendMessage(message, senderID, isMedia){
     console.log("enviando mensagem")
     console.log(message)
     try {
@@ -19,7 +19,7 @@ class Twillio {
         body: message,
         to: senderID, // Esse numero está configurado para send email in production tirando 1 dollar por mes
         from: 'whatsapp:+14155238886', // From a valid Twilio number
-        // mediaUrl: isMedia ?? ""
+        // mediaUrl: isMedia
       }).then((message) => {
         console.log("message.sid")
         console.log(message)

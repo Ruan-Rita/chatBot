@@ -12,27 +12,25 @@ class HomeController{
         if(recognize){
             console.log("------------------------")
             console.log("Entrou no send message com reconhecimento")
-            const statusPromise = await Promise.all([Array.from(messageDatabase.chatting)
-                .forEach(async chat => {
-                    console.log(`Hora da Verdade, recognizeID: ${recognize} é igual a ChatID: ${chat.chat_id}`)
-                    if(chat.chat_id == recognize){
-                        console.log("HEHEHE Entrou");
-                        customMessage.push(chat.body.msg)
-                        console.log(customMessage);
-                        await this.database(chat.chat_id)
-                        console.log("vamos executar o map");
-                        Array.from(chat.body.options).map(async item => {
-                            console.log("item")
-                            console.log(item)
-                            item.msg != "" && customMessage.push(item)
-                        });
-                        console.log("Options");
-                        console.log(customMessage);
-                    }
-                })
-                
-            ]).then(resolve => console.log("quem é resolve", resolve)).catch(error => console.log("Promessa não cumprida", error))
-            console.log(statusPromise);
+            // var chaveActual = null
+            for(const chat of Array.from(messageDatabase.chatting)){
+                console.log(`Hora da Verdade, recognizeID: ${recognize} é igual a ChatID: ${chat.chat_id}`)
+                if(chat.chat_id == recognize){
+                    console.log("HEHEHE Entrou");
+                    console.log(chat.body.msg);
+                    customMessage.push(chat.body)
+                    console.log(customMessage);
+                    await this.database(chat.chat_id)
+                    console.log("vamos executar o map");
+                    Array.from(chat.body.options).map(item => {
+                        console.log("item")
+                        console.log(item)
+                        item.msg != "" && customMessage.push(item)
+                    });
+                    console.log("Options");
+                    console.log(customMessage);
+                }
+            }
             
         }else{
             var validateMessage = false    
@@ -89,11 +87,18 @@ class HomeController{
 
         return customMessage;
     }
-
+    formatText(text){
+        // remove caractere especial
+        text = text.replace(/[^a-zA-Z.] /g,'')
+        // remover acetuações
+        text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        return text
+    }
     // reconhecer
     recognize(message){
-        var find = false
-
+        // ------------------------------------------------------------------
+        // USAR O SUBSTRING PARA TIRAR NUMBER E CARACTERES ESPECIAIS
+        // ------------------------------------------------------------------
         const chaveValues = []
         Array.from(messageDatabase.chatting).forEach(botConversa => {
                 
@@ -116,7 +121,7 @@ class HomeController{
                     console.log(`Client: ${palavraCliente.toLowerCase()}`)
                     console.log(`Bot: ${palavraBot.toLowerCase()}` )
 
-                    if( palavraBot.toLowerCase() == palavraCliente.toLowerCase() ){
+                    if( this.formatText(palavraBot.toLowerCase()) == this.formatText(palavraCliente.toLowerCase()) ){
                         contador ++; 
                         console.log(`ENCOTROU POHA --------------- Bot: ${palavraBot.toLowerCase()} e Client: ${palavraCliente.toLowerCase()}` )
                     }
@@ -144,7 +149,7 @@ class HomeController{
         console.log("O maior deles:")
         console.log(maior)
 
-        return maior.chave ?? find
+        return maior.cont > 0 ? maior.chave : false
     }
     async getHistoric(){
         const historic = await db.HistoricModel.find({_id:"614f305ee4e539a3027bbe4d"}).catch(e =>{

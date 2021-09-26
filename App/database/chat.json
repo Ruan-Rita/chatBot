@@ -47,7 +47,7 @@
         {
             "chat_id": "4",
             "body":{
-                "msg":"Quem somos?",
+                "msg":"Quem somos? Sobre nós:",
                 "options":[
                     {"chave": "5", "opt": 1,"msg":"Fundada no ano de 2007, a Pichau Informática é uma empresa que trabalha com os mais variados produtos, atuando principalmente no setor de informática e equipamentos eletrônicos em geral, área bastante competitiva e em constante crescimento, onde qualidade, variedade, garantia e eficiência são critérios importantíssimos para total satisfação, confiança e preferência de nossos consumidores."}
                 ]
