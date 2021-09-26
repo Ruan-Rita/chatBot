@@ -18,20 +18,29 @@ routes.post('/whatsapp', async function(req, res){
     
     var instancia = new Twilio();
     const chatBot = new ChatController();
-    const chats = chatBot.chat(message)
-    instancia.sendMessage("teste", senderID, false)
-    console.log("/////////////////********************************************************")
-    console.log("/////////////////********************************************************")
-    console.log("/////////////////********************************************************")
-    console.log("/////////////////********************************************************")
-    // console.log(chats)
 
-    Array.from(chats).forEach(conversa =>  {
-        console.log("Conversa --------------------------------------------")
-        console.log(conversa)
+    const send = async (msg, img = false) => {
+        await instancia.sendMessage(msg, senderID, img ?? false)
+    }
+    // await send("asdasd")
+    
 
-        instancia.sendMessage(conversa.msg, senderID, false)
+    const chats = await chatBot.chat(message)
+    console.log("ANTES da Conversa --------------------------------------------")
+
+    Array.from(chats).forEach(async function(conversa) {
+        if(conversa != "" & conversa != undefined){
+            await send(conversa, conversa.img ?? false)
+        }
     })
+   
+});
+routes.post('/facebook', async function(req, res){
+    console.log("Recebendo Request do Twilio")
+    console.log(req.body)
+
+    const message = req.body.Body
+    const senderID = req.body.From
 });
 
 routes.post('/ambiente', async function(req, res){
@@ -40,7 +49,7 @@ routes.post('/ambiente', async function(req, res){
 
     const chatC = new ChatController();
     
-    res.json(chatC.chat(req.body.msg))
+    res.json(await chatC.chat(req.body.msg))
 });
 
 module.exports = routes
