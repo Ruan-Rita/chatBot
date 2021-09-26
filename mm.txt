@@ -1,3 +1,3 @@
-1 - send photo
-2 - reconhecer palavras
-3 - colocar mais textos
+1 - send photo - Pronto
+2 - reconhecer palavras - Quase Pronto
+3 - colocar mais textos - Pronto

@@ -1,39 +1,45 @@
 const messageDatabase = require('../database/chat.json')
-const historic = require('../database/historic.json')
-const fs = require('fs');
+const db = require("../database/config")
 const outOfTime = "Tempo resposta com atraso mais de 1 min encerramos a conversa automaticamente."
-const path = require('path')
 
 class HomeController{
-    chat(message){
+    constructor(){
+
+    }
+    async chat(message){
         let customMessage = [];
         // customMessage.push(messageDatabase.initial.msg)
         
         // Reconhcer palavras
-        const recognize = this.recognize(message);
+        // const recognize = this.recognize(message);
         if(false){
-            console.log("------------------------")
-            console.log("Entrou no send message com reconhecimento")
-            Array.from(messageDatabase.chatting).forEach(chat => {
+            // console.log("------------------------")
+            // console.log("Entrou no send message com reconhecimento")
+            // Array.from(messageDatabase.chatting).forEach(chat => {
                     
-                // console.log(`Hora da Verdade, Historic: ${value} é igual a foreach: ${chat.chat_id}`)
-                if(chat.chat_id == recognize){
-                    customMessage.push(messageDatabase.chatting[0].body.msg)
-                    this.database(messageDatabase.chatting[0].chat_id)
-                    Array.from(messageDatabase.chatting[0].body.options).map(item => {
-                        console.log(item)
-                        item.msg != "" && customMessage.push(item)
-                    });
+            //     // console.log(`Hora da Verdade, Historic: ${value} é igual a foreach: ${chat.chat_id}`)
+            //     if(chat.chat_id == recognize){
+            //         customMessage.push(messageDatabase.chatting[0].body.msg)
+            //         this.historicValidate(messageDatabase.chatting[0].chat_id)
+            //         Array.from(messageDatabase.chatting[0].body.options).map(item => {
+            //             console.log(item)
+            //             item.msg != "" && customMessage.push(item)
+            //         });
 
-                }
-            })
+            //     }
+            // })
             
         }else{
             var validateMessage = false    
             // a mesagem atual corresponse a linha de mensagem do historico
-            const value = this.historicValidate(message)
+            const value = await this.historicValidate(message)
+            console.log("PAssou na validção?");
+            console.log(value);
+
             value.outOfTime && customMessage.push({msg: outOfTime})
-            if(value.validate){
+            if(!value.outOfTime && value.validate){
+                console.log("passou na validacao de tempo");
+                console.log(value.validate);
                 //  todos os chats ids
                 Array.from(messageDatabase.chatting).forEach(chat => {
                     
@@ -42,28 +48,36 @@ class HomeController{
                         validateMessage = true;
                         // mensagem correspondente o que ele respondeu
                         customMessage.push(chat.body)
+                        console.log(chat.body)
                         
                         Array.from(chat.body.options).map(item => {
+                            console.log("///////////////////************************")
+
                             console.log(item)
                             item.msg != "" && customMessage.push(item)
                         });
                     }
                 })
-                validateMessage
+                // validateMessage
             }
             
             
-            if(!validateMessage){
+            if(value.outOfTime || !validateMessage){
+                console.log("Valição de tempo: Atrasou a a msg estamos atualizando o tempo");
                 customMessage.push(messageDatabase.chatting[0].body)
-                this.database(messageDatabase.chatting[0].chat_id)
+                await this.database(messageDatabase.chatting[0].chat_id)
+                console.log(messageDatabase.chatting[0].body)
+
                 Array.from(messageDatabase.chatting[0].body.options).map(item => {
+                    console.log("///////////////////************************")
                     console.log(item)
                     item.msg != "" && customMessage.push(item)
                 });
             }
-
         }
-
+        console.log("Finalizou não mais nada a mostrar")
+        console.log("Quais são as mensagens a mostrar");
+        console.log(customMessage);
         // console.log()
         // console.log("Dados armazenados")
         // console.log(historic)
@@ -130,49 +144,49 @@ class HomeController{
 
         return maior.chave ?? find
     }
-    async createResourceEmpty(){
-        if(!historic.created_at){
-            const mesDatabase = {
-                "lastMsgID": "",
-                "created_at": "",
-            }
-            fs.writeFile(pathDatabase, JSON.stringify(mesDatabase), err => {
-                console.log(err || 'Arquivo salvo');
-            });
-        }
+    async getHistoric(){
+        const historic = await db.HistoricModel.find({_id:"614f305ee4e539a3027bbe4d"}).catch(e =>{
+            console.log("DEU MERDA NO MONGO")
+            console.log(e)
+        });
+
+        return historic[0];
     }
-    database(message){
-        const pathDatabase = path.join(__dirname, '../', 'database', 'historic.json') 
-        const mesDatabase = {
-            "lastMsgID": message,
-            "created_at": new Date(),
-        }
-        fs.writeFile(pathDatabase, JSON.stringify(mesDatabase), err => {
-            console.log(err || 'Arquivo salvo');
+    async database(message){
+        const data = await db.HistoricModel.findOneAndUpdate({_id:"614f305ee4e539a3027bbe4d"}, {created_at: new Date(),lastMsgID: message }).catch(e =>{
+            console.log("DEU MERDA NO MONGO")
+            console.log(e)
         });
     }
 
-    historicValidate(message){
-        async () => {
-            await this.createResourceEmpty()
-        }
+    async historicValidate(message){
+        console.log()
+        console.log("Inciou a validação")
+        const historic = await this.getHistoric();
+        console.log("historic")
+        console.log(historic);
         var validate = false
         if(this.verifyDate(historic.created_at)){
-            console.log("Deu Deu Fora Fora do prajo estabelecido")
-            console.log("Reiniciando conversa .. . .. . .. ...")
+            console.log("Finalizou a validação no fora de prajo")
             return {
                 validate: validate,
                 outOfTime: true
             }
         }
+        // console.log("Validar Validar Validar Val:idar Validar Validar:")
+        // console.log(await this.getHistoric())
         Array.from(messageDatabase.chatting).forEach(chat =>  {
+        console.log(`Estamos comparado his: ${historic.lastMsgID} com == chatid: ${chat.chat_id}`);
+            
             if(historic.lastMsgID == chat.chat_id){
                 // console.log(`Entrou, Historic: ${historic.lastMsgID} é igual a foreach: ${chat.chat_id}`)
                 // console.log(`Entrou, Historic: ${historic.lastMsgID} é igual a foreach: ${chat.chat_id}`)
-                Array.from(chat.body.options).map(item => {
+                Array.from(chat.body.options).map(async item => {
                     if(item.opt == "all"){
                         validate = item.chave;
-                        this.database(item.chave);
+                        await this.database(item.chave);
+                        console.log("Finalizou a validação no item encotrado -- all")
+
                         return {
                             validate: validate,
                             outOfTime: false
@@ -180,7 +194,9 @@ class HomeController{
                     }else {
                         if (item.opt == message) {
                             validate = item.chave;
-                            this.database(item.chave);
+                            console.log("Finalizou a validação no item encotrado -- item")
+
+                            await this.database(item.chave);
                             return {
                                 validate: validate,
                                 outOfTime: false
@@ -193,6 +209,8 @@ class HomeController{
         })
         // if (validate) console.log("Bom, menssagem está no corpo de resposta atual do historico")
         // else console.log("Bom, mensagem não encotrada do historico")
+        console.log("Finalizou a validação")
+        console.log();
         return {
             validate: validate,
             outOfTime: false
@@ -201,7 +219,7 @@ class HomeController{
     verifyDate(data){
         const dataOld = new Date(data)
         const dateNow = new Date()
-
+        console.log("verifica se a conversa está parado mais de 1 minuto, se tiver inicia uma nova conversa");
         // verifica se a conversa está parado mais de 1 minuto, se tiver inicia uma nova conversa
         if((dateNow.getMinutes() - 1) > dataOld.getMinutes()){
             console.log("Fora do Prajo !")
