@@ -3,7 +3,7 @@
         {   
             "chat_id": "initial",
             "body":{
-                "msg": "Olá, eu sou ChatBot da Pichau. Digite uma das opções:",
+                "msg": "Olá eu sou ChatBot da Pichau. Digite uma das opções:",
                 "options":[
                     {"chave": "1", "opt":"1" ,"msg":"1 - Conhecer nossos produtos"},
                     {"chave": "2", "opt":"2" ,"msg":"2 - Tirar dúvidas dos nossos hardwares"},
@@ -17,7 +17,7 @@
             
             "chat_id": "1",
             "body":{
-                "msg":"Nossos produtos, Digite uma das opções para saber mais:",
+                "msg":"Nossos produtos , Digite uma das opções para saber mais:",
                 "options":[
                     {"chave": "6", "opt":"1" ,"msg":"1 - Memória Ram", "img" : "https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/l/n/lnm100-256rbna2.jpg" },
                     {"chave": "7", "opt":"2" ,"msg":"2 - Mouse", "img" : "https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/h/v/hv-ms1023.jpg"}
@@ -27,7 +27,7 @@
         {
             "chat_id": "2",
             "body":{
-                "msg":"Dúvidas, Digite uma das opções:",
+                "msg":"Dúvidas , Digite uma das opções:",
                 "options":[
                     {"chave": "4","opt":"1" ,"msg":"1 - Quem somos nos?"},
                     {"chave": "8","opt":"2" ,"msg":"2 - o que fazemos ?"}
@@ -65,12 +65,12 @@
         {
             "chat_id": "6",
             "body":{
-                "msg":"Memoria Ram!",
+                "msg":"Memoria Ram !",
                 "options":[
                     {"chave": "5", "opt": "all", "msg":"4 GByte . Disponível em: https://www.pichau.com.br/ssd-lexar-nm100-256gb-m-2-2280-sata-6gb-s-lnm100-256rbna "},
                     {"chave": "5", "opt": "all", "msg":"8 GByte . Disponível em: https://www.pichau.com.br/ssd-lexar-nm100-256gb-m-2-2280-sata-6gb-s-lnm100-256rbna"},
-                    {"chave": "5", "opt": "all", "msg":"12 GByte. Disponível em: https://www.pichau.com.br/ssd-lexar-nm100-256gb-m-2-2280-sata-6gb-s-lnm100-256rbna "},
-                    {"chave": "5", "opt": "all", "msg":"16 GByte. Disponível em: https://www.pichau.com.br/ssd-lexar-nm100-256gb-m-2-2280-sata-6gb-s-lnm100-256rbna "}
+                    {"chave": "5", "opt": "all", "msg":"12 GByte . Disponível em: https://www.pichau.com.br/ssd-lexar-nm100-256gb-m-2-2280-sata-6gb-s-lnm100-256rbna "},
+                    {"chave": "5", "opt": "all", "msg":"16 GByte . Disponível em: https://www.pichau.com.br/ssd-lexar-nm100-256gb-m-2-2280-sata-6gb-s-lnm100-256rbna "}
                 ]
             }
         }
@@ -88,7 +88,7 @@
         {
             "chat_id": "8",
             "body":{
-                "msg":"O que fazemos?",
+                "msg":"O que fazemos ?",
                 "options":[
                     {"chave": "5", "opt": "all", "msg":"Procuramos acima de tudo oferecer o que há de melhor, os melhores fornecedores, os mais atualizados produtos, o mais atencioso dos atendimentos, juntamente com os preços mais competitivos e atraentes do mercado para que nosso público encontre não apenas variedade e qualidade, mas também uma empresa que se preocupa com a felicidade e total satisfação de seus clientes e por que não, amigos! "}
                 ]
@@ -108,7 +108,7 @@
         {
             "chat_id": "10",
             "body":{
-                "msg":"Solicitação de reembolso, digite o numero do seu pedido ou seu cpf",
+                "msg":"Solicitação de reembolso , digite o numero do seu pedido ou seu cpf",
                 "options":[
                     {"chave": "11", "opt": "all", "msg":"Procuramos acima de tudo oferecer o que há de melhor, os melhores fornecedores, os mais atualizados produtos, o mais atencioso dos atendimentos, juntamente com os preços mais competitivos e atraentes do mercado para que nosso público encontre não apenas variedade e qualidade, mas também uma empresa que se preocupa com a felicidade e total satisfação de seus clientes e por que não, amigos! "}
                 ]

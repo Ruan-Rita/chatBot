@@ -22,7 +22,6 @@ routes.post('/whatsapp', async function(req, res){
     const send = async (msg, img = false) => {
         await instancia.sendMessage(msg, senderID, img ?? false)
     }
-    // await send("asdasd")
     
 
     const chats = await chatBot.chat(message)

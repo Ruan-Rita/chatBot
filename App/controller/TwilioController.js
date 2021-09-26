@@ -31,6 +31,9 @@ class Twillio {
       console.log(e); // passa o objeto de exceção para o manipulador de erro
     }
   }
+
+
+  
   async autoPilot(message, senderID, isMedia = false){
     console.log("enviando mensagem")
     console.log(message)

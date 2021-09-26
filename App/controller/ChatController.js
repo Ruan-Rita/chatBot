@@ -3,31 +3,36 @@ const db = require("../database/config")
 const outOfTime = "Tempo resposta com atraso mais de 1 min encerramos a conversa automaticamente."
 
 class HomeController{
-    constructor(){
 
-    }
     async chat(message){
         let customMessage = [];
-        // customMessage.push(messageDatabase.initial.msg)
         
         // Reconhcer palavras
-        // const recognize = this.recognize(message);
-        if(false){
-            // console.log("------------------------")
-            // console.log("Entrou no send message com reconhecimento")
-            // Array.from(messageDatabase.chatting).forEach(chat => {
-                    
-            //     // console.log(`Hora da Verdade, Historic: ${value} é igual a foreach: ${chat.chat_id}`)
-            //     if(chat.chat_id == recognize){
-            //         customMessage.push(messageDatabase.chatting[0].body.msg)
-            //         this.historicValidate(messageDatabase.chatting[0].chat_id)
-            //         Array.from(messageDatabase.chatting[0].body.options).map(item => {
-            //             console.log(item)
-            //             item.msg != "" && customMessage.push(item)
-            //         });
-
-            //     }
-            // })
+        const recognize = this.recognize(message);
+        if(recognize){
+            console.log("------------------------")
+            console.log("Entrou no send message com reconhecimento")
+            const statusPromise = await Promise.all([Array.from(messageDatabase.chatting)
+                .forEach(async chat => {
+                    console.log(`Hora da Verdade, recognizeID: ${recognize} é igual a ChatID: ${chat.chat_id}`)
+                    if(chat.chat_id == recognize){
+                        console.log("HEHEHE Entrou");
+                        customMessage.push(chat.body.msg)
+                        console.log(customMessage);
+                        await this.database(chat.chat_id)
+                        console.log("vamos executar o map");
+                        Array.from(chat.body.options).map(async item => {
+                            console.log("item")
+                            console.log(item)
+                            item.msg != "" && customMessage.push(item)
+                        });
+                        console.log("Options");
+                        console.log(customMessage);
+                    }
+                })
+                
+            ]).then(resolve => console.log("quem é resolve", resolve)).catch(error => console.log("Promessa não cumprida", error))
+            console.log(statusPromise);
             
         }else{
             var validateMessage = false    
@@ -111,12 +116,9 @@ class HomeController{
                     console.log(`Client: ${palavraCliente.toLowerCase()}`)
                     console.log(`Bot: ${palavraBot.toLowerCase()}` )
 
-                    if(palavraCliente.toLowerCase() > (palavraBot.toLowerCase()) || palavraCliente.toLowerCase() < (palavraBot.toLowerCase()) ){
-                      
-                    } else{
+                    if( palavraBot.toLowerCase() == palavraCliente.toLowerCase() ){
                         contador ++; 
                         console.log(`ENCOTROU POHA --------------- Bot: ${palavraBot.toLowerCase()} e Client: ${palavraCliente.toLowerCase()}` )
-
                     }
                 })
             })
@@ -125,11 +127,11 @@ class HomeController{
         // })
         })
         
-        function maiorGet(arra){
-            var maior = {chave: 0, cont: 0};
-            arra.forEach(item => {
-                if(maior.chave < item.value){
-                    maior = {chave:item.key, cont: item.cont}
+        function maiorGet(arrayWordsRecognizes){
+            var maior = arrayWordsRecognizes[0]
+            arrayWordsRecognizes.forEach(item => {
+                if(maior.cont < item.cont){
+                    maior = {chave:item.chave, cont: item.cont}
                 }
             })
             return maior
