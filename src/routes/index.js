@@ -20,19 +20,17 @@ routes.post('/whatsapp', async function(req, res){
     const chatBot = new ChatController();
 
     const send = async (msg, img = false) => {
-        await instancia.sendMessage(msg, senderID, img ?? false)
+        await instancia.sendMessage(msg, senderID, img)
     }
-    // await send("asdasd")
     
 
     const chats = await chatBot.chat(message)
     console.log("ANTES da Conversa --------------------------------------------")
-
-    Array.from(chats).forEach(async function(conversa) {
+    for(const conversa of Array.from(chats)){
         if(conversa != "" & conversa != undefined){
-            await send(conversa, conversa.img ?? false)
+            await send(conversa.msg, conversa.img ?? false)
         }
-    })
+    }
    
 });
 routes.post('/facebook', async function(req, res){
